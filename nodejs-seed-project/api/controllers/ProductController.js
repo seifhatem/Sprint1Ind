@@ -55,6 +55,13 @@ module.exports.getProductsBelowPrice = async (req, res) => {
 };
 
 module.exports.createProduct = async (req, res) => {
+  if(req.session.isAdmin!=true){
+    return res.status(403).json({
+      err: 'Forbidden',
+      msg: 'You are not an administrator',
+      data: null
+    });
+  }
   const valid =
   req.body.seller &&
   Validations.isString(req.body.seller) &&
@@ -82,6 +89,13 @@ module.exports.createProduct = async (req, res) => {
 };
 
 module.exports.updateProduct = async (req, res) => {
+  if(req.session.isAdmin!=true){
+    return res.status(403).json({
+      err: 'Forbidden',
+      msg: 'You are not an administrator',
+      data: null
+    });
+  }
   if (!Validations.isObjectId(req.params.productId)) {
     return res.status(422).json({
       err: null,
@@ -125,6 +139,14 @@ module.exports.updateProduct = async (req, res) => {
 };
 
 module.exports.deleteProduct = async (req, res) => {
+  if(req.session.isAdmin!=true){
+    return res.status(403).json({
+      err: 'Forbidden',
+      msg: 'You are not an administrator',
+      data: null
+    });
+  }
+  
   if (!Validations.isObjectId(req.params.productId)) {
     return res.status(422).json({
       err: null,
