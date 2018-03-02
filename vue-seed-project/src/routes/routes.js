@@ -11,6 +11,8 @@ import Maps from 'src/components/Dashboard/Views/Maps.vue'
 import Typography from 'src/components/Dashboard/Views/Typography.vue'
 import TableList from 'src/components/Dashboard/Views/TableList.vue'
 import Store from 'src/components/Dashboard/Views/Store.vue'
+import Login from 'src/components/Dashboard/Views/Login/Login.vue'
+import Register from 'src/components/Dashboard/Views/Login/Register.vue'
 
 const routes = [
   {
@@ -62,6 +64,17 @@ const routes = [
         path: 'table-list',
         name: 'table-list',
         component: TableList
+      },
+      {
+        path: 'login',
+        name: 'login',
+        component: Login
+        // redirect: 'admin/login'
+      },
+      {
+        path: 'register',
+        name: 'register',
+        component: Register
       }
     ]
   },
