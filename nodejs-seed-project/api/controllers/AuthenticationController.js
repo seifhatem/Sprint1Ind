@@ -4,6 +4,8 @@ Validations = require('../utils/Validations'),
 Encryption = require('../utils/Encryption'),
 User = mongoose.model('User');
 
+
+
 module.exports.checkCredentials = async (req, res) => {
   if (!Validations.isString(req.body.username) || !Validations.isString(req.body.password)) {
     return res.status(422).json({
@@ -14,6 +16,10 @@ module.exports.checkCredentials = async (req, res) => {
   }
    const users = await User.find({username: req.body.username,password:req.body.password}).exec();
    if(users.length==1){
+
+     req.session.loggedinuser = req.body.username;
+     if(req.body.username=='seifhatem'){req.session.isAdmin=true;}else{req.session.isAdmin=false;}
+    
      res.status(200).json({
        msg: 'Valid username & password'
      });
