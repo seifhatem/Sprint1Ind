@@ -22,6 +22,16 @@ const SidebarStore = {
       name: 'Table List',
       icon: 'ti-view-list-alt',
       path: '/admin/table-list'
+    },
+    {
+      name: 'Login',
+      icon: 'ti-anchor',
+      path: '/admin/login'
+    },
+    {
+      name: 'Signup',
+      icon: 'ti-anchor',
+      path: '/admin/register'
     }
 
     // {
