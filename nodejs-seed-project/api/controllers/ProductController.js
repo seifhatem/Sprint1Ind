@@ -3,6 +3,8 @@ const mongoose = require('mongoose'),
   Validations = require('../utils/Validations'),
   Product = mongoose.model('Product');
 
+
+
 module.exports.getProduct = async (req, res) => {
   if (!Validations.isObjectId(req.params.productId)) {
     return res.status(422).json({
@@ -139,14 +141,17 @@ module.exports.updateProduct = async (req, res) => {
 };
 
 module.exports.deleteProduct = async (req, res) => {
+  req.session.reload(function(err) {
+  // session updated
+  })
   if(req.session.isAdmin!=true){
     return res.status(403).json({
       err: 'Forbidden',
-      msg: 'You are not an administrator',
+      msg: 'You are not an administrator, '+req.session.loggedinuser,
       data: null
     });
   }
-  
+
   if (!Validations.isObjectId(req.params.productId)) {
     return res.status(422).json({
       err: null,

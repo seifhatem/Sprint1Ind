@@ -29,7 +29,16 @@ app.use(
 );
 
 var session = require('express-session');
-app.use(session({secret: "Shh, its a secret!"}));
+
+
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { httpOnly: true, secure: false }
+}))
+
 app.use('/api', routes);
 
 // 500 internal server error handler

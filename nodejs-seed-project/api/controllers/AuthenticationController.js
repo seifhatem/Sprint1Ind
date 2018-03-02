@@ -19,10 +19,15 @@ module.exports.checkCredentials = async (req, res) => {
 
      req.session.loggedinuser = req.body.username;
      if(req.body.username=='seifhatem'){req.session.isAdmin=true;}else{req.session.isAdmin=false;}
-    
+
+     req.session.save(function(err) {
+
+     })
      res.status(200).json({
-       msg: 'Valid username & password'
+       msg: 'Valid username & password',
+       isadmin: req.session.isAdmin
      });
+
    }
 
    if(users.length==0){
