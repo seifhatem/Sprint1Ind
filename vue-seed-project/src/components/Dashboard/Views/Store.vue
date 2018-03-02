@@ -71,6 +71,10 @@ export default {
     axios.delete('http://localhost:3000/api/product/deleteProduct/'+productId).then(res => {
         this.reloadProducts()
       })
+      .catch((error) => {
+          console.dir(error);
+          alert(error.response.data.msg);
+      });
     },
     addProduct: function () {
     axios.post('http://localhost:3000/api/product/createProduct', {
@@ -84,6 +88,10 @@ export default {
         this.add_seller= ''
         this.add_autoid= ''
       })
+      .catch((error) => {
+          console.dir(error);
+          alert(error.response.data.msg);
+      });
     },
     editProduct: function () {
     axios.patch('http://localhost:3000/api/product/updateProduct/'+this.add_autoid, {
@@ -97,6 +105,10 @@ export default {
         this.add_seller= ''
         this.add_autoid= ''
       })
+      .catch((error) => {
+          console.dir(error);
+          alert(error.response.data.msg);
+      });
     },
     reloadProducts(){
     axios.get('http://localhost:3000/api/product/getProducts')
